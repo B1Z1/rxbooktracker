@@ -19,12 +19,24 @@ import { allBooks, allReaders } from "./data";
 
 // allBooksObservable$.subscribe(book => console.log(book.title));
 
-let source1$ = of("Hi", 10, true, allReaders[0].name);
-// source1$.subscribe(value => {
-//   console.log(value);
-// });
+// let source1$ = of("Hi", 10, true, allReaders[0].name);
+// // source1$.subscribe(value => {
+// //   console.log(value);
+// // });
 
-let source2$ = from(allBooks);
-//source2$.subscribe(book => console.log(book.title));
+// let source2$ = from(allBooks);
+// //source2$.subscribe(book => console.log(book.title));
 
-concat(source1$, source2$).subscribe(value => console.log(value));
+// concat(source1$, source2$).subscribe(value => console.log(value));
+
+let button1 = document.getElementById("readersButton");
+
+const clicks = fromEvent(button1, "click");
+
+clicks.subscribe(event => {
+  console.log(event);
+  let readersDiv = document.getElementById("readers");
+  for (let reader of allReaders) {
+    readersDiv.innerHTML += reader.name + "<br>";
+  }
+});
